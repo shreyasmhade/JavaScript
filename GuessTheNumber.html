@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      padding: 10px;
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .message {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Guess the Number</h1>
+    <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
+    <input type="number" id="guess" placeholder="Enter your guess">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // Generate a random number between 1 and 100
+    const randomNum = Math.floor(Math.random() * 100) + 1;
+    console.log(`The secret number is ${randomNum}`); // Debugging aid
+
+    // Function to check the user's guess
+    function checkGuess() {
+      const userGuess = Number(document.getElementById("guess").value); // Get the user's input and convert it to a number
+      const message = document.getElementById("message"); // Reference to the message display area
+
+      // Validate and provide feedback based on the user's guess
+      if (!userGuess) {
+        // Check if the input is empty or invalid
+        message.textContent = "⚠️ Please enter a number!";
+      } else if (userGuess < randomNum) {
+        // Guess is too low
+        message.textContent = "📉 Too low! Try again.";
+      } else if (userGuess > randomNum) {
+        // Guess is too high
+        message.textContent = "📈 Too high! Try again.";
+      } else {
+        // Correct guess
+        message.textContent = "🎉 Congratulations! You guessed the correct number!";
+      }
+    }
+  </script>
+</body>
+</html>
